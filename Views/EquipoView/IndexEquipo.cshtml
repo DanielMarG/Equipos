@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Equipos.Models.Equipo>
+
+@{
+    ViewData["Title"] = "IndexEquipos";
+}
+
+<h1 class="titulo">Todos los Equipos</h1>
+
+<p>
+    <a asp-action="CreateEquipo">Nuevo Equipo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ciudad)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            FutbolContext f = new FutbolContext();
+        }
+        @foreach (var item in f.Equipos.ToList()) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ciudad)
+                </td>
+                <td>
+                    <a asp-action="UpdateEquipo" asp-route-id="@item.Id">Modificar</a> |
+                    <a asp-action="DeleteEquipo" asp-route-id="@item.Id">Eliminar</a> |
+                    <a asp-action="ExpandirEquipo" asp-route-id="@item.Id">Ver Jugadores</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

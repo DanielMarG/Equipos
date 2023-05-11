@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Rose:wght@300&display=swap');
+
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: black;
+    color: red;
+    font-family: 'Red Rose', cursive;
+}
+
+td, th {
+    color: red;
+    font-family: 'Red Rose', cursive;
+}
+
+nav {
+    opacity: 0.5;
+    background-color: grey;
+    color: red;
+}
+
+
+#boton {
+    background-color: green;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.ver {
+    background: none;
+    display: inline;
+    color: red;
+    outline: none;
+}
+
+.formver {
+    display: inline;
+}
+
+a:link {
+    color: red;
+    text-decoration: none;
+}
+
+a:visited {
+    color: red;
+    text-decoration: none;
+}
+
+h2 {
+    margin-top: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.volver {
+    background-color: grey;
+    color: white;
+    padding: 5px;
+}

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Equipos.Models.Jugadore>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>Todos los Jugadores</h1>
+
+<p>
+    <a asp-action="CreateJugador">Nuevo Jugador</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellidos)
+            </th>
+            <th>
+                Equipo
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            FutbolContext context = new FutbolContext();
+        }
+@foreach (var item in context.Jugadores.ToList()) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => context.Equipos.FirstOrDefault(e => e.Id == item.IdEquipo).Nombre)
+            </td>
+            <td>
+                <a asp-action="EditarJugador" asp-route-id="@item.Id">Modificar</a> |
+                <a asp-action="DeleteJugador" asp-route-id="@item.Id">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

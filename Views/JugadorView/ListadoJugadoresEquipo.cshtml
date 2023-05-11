@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Equipos.Models.Jugadore>
+
+@{
+    ViewData["Title"] = "View";
+    var jugadores = ViewData["Jugadores"] as List<Jugadore>;
+    var nombreEquipo = ViewData["Equipo"] as string;
+}
+
+<h1>Todos los Jugadores del @nombreEquipo</h1>
+
+@if(jugadores.Count() < 1)
+{
+    <div>
+        <h2>No hay jugadores registrados de este equipo</h2>
+    </div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Apellidos)
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in jugadores)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apellidos)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<div style="text-align:center">
+    <a class="volver" asp-action="IndexEquipo">Volver a Equipos</a>
+</div>

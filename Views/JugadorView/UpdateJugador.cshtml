@@ -1,0 +1,58 @@
+﻿@model Equipos.Models.Jugadore
+
+@{
+    ViewData["Title"] = "View";
+    var jugador = ViewData["Jugador"] as Jugadore;
+    var equipos = ViewData["Equipos"] as List<Equipo>;
+}
+
+<h1>Modificar Jugador</h1>
+
+<h4>Jugadores</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UpdateJugador">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" value=@jugador.Nombre />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Apellidos" class="control-label"></label>
+                <input asp-for="Apellidos" class="form-control" value=@jugador.Apellidos/>
+                <span asp-validation-for="Apellidos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdEquipo" class="control-label">Equipo</label>
+                <select asp-for="IdEquipo" class="form-control">
+                    @foreach(var f in equipos)
+                    {
+                       @if(f.Id == jugador.IdEquipo)
+                        {
+                            <option value=@f.Id selected>@f.Nombre</option>
+                        }
+                        else
+                        {
+                            <option value=@f.Id>@f.Nombre</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="IdEquipo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input id="boton" type="submit" value="Guardar cambios" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="IndexJugadores">Cancelar</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
